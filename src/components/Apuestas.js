@@ -22,6 +22,13 @@ export default class Apuestas extends Component {
             })
         })
     }
+    eliminarApuesta=(id)=>{
+        var request="api/apuestas/"+id
+
+        axios.delete(this.url+request).then(response=>{
+            this.cargarApuestas();
+        })
+    }
     componentDidMount=()=>{
         this.cargarApuestas();
     }
@@ -55,6 +62,9 @@ export default class Apuestas extends Component {
                         <td>{apuesta.usuario}</td>
                         <td>{apuesta.resultado}</td>
                         <td>{apuesta.fecha}</td>
+                        <td>
+                            <button onClick={()=>{this.eliminarApuesta(apuesta.idApuesta)}}>Eliminar</button>
+                        </td>
                     </tr>)
                 })
                 }
